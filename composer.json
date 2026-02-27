@@ -29,6 +29,10 @@
       "type": "composer",
       "url": "https://wpackagist.org",
       "only": ["wpackagist-plugin/*", "wpackagist-theme/*"]
+    },
+    {
+      "type": "path",
+      "url": "./storeroom-src"
     }
   ],
   "require": {
@@ -40,7 +44,8 @@
     "roots/bedrock-disallow-indexing": "^2.0",
     "roots/wordpress": "6.9.1",
     "roots/wp-config": "1.0.0",
-    "wpackagist-theme/twentytwentyfive": "^1.0"
+    "wpackagist-theme/twentytwentyfive": "^1.0",
+    "benjamincm/storeroom-src": "@dev"
   },
   "require-dev": {
     "laravel/pint": "^1.18"

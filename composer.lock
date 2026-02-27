@@ -4,8 +4,27 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "73aafa277950600ca0daebba18909aca",
+    "content-hash": "507ef5875b86298d3415ae268bc47222",
     "packages": [
+        {
+            "name": "benjamincm/storeroom-src",
+            "version": "dev-master",
+            "dist": {
+                "type": "path",
+                "url": "./storeroom-src",
+                "reference": "1b7d69ab4d8e926629cf45233d8ae74667730023"
+            },
+            "type": "wordpress-muplugin",
+            "autoload": {
+                "psr-4": {
+                    "App\\Core\\": "src/"
+                }
+            },
+            "description": "Plugin used on https://benjamincm.org website.",
+            "transport-options": {
+                "relative": true
+            }
+        },
         {
             "name": "composer/installers",
             "version": "v2.3.0",
@@ -1103,7 +1122,9 @@
     ],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {},
+    "stability-flags": {
+        "benjamincm/storeroom-src": 20
+    },
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
