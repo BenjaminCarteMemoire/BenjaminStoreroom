@@ -33,6 +33,10 @@
     {
       "type": "path",
       "url": "./storeroom-src"
+    },
+    {
+      "type": "path",
+      "url": "./storeroom-theme"
     }
   ],
   "require": {
@@ -45,10 +49,13 @@
     "roots/wordpress": "6.9.1",
     "roots/wp-config": "1.0.0",
     "wpackagist-theme/twentytwentyfive": "^1.0",
-    "benjamincm/storeroom-src": "@dev"
+    "benjamincm/storeroom-src": "@dev",
+    "benjamincm/storeroom-theme": "@dev",
+    "timber/timber": "^2.3"
   },
   "require-dev": {
-    "laravel/pint": "^1.18"
+    "laravel/pint": "^1.18",
+    "symfony/var-dumper": "^8.0"
   },
   "config": {
     "optimize-autoloader": true,

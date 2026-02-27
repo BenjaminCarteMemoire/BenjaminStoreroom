@@ -1,0 +1,26 @@
+{
+  "name": "benjaminstoreroom",
+  "version": "1.0.0",
+  "description": "Source code of the https://benjamincm.org Portfolio",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BenjaminCarteMemoire/BenjaminStoreroom.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BenjaminCarteMemoire/BenjaminStoreroom/issues"
+  },
+  "homepage": "https://github.com/BenjaminCarteMemoire/BenjaminStoreroom#readme",
+  "dependencies": {
+    "@swup/body-class-plugin": "^3.3.0",
+    "swup": "^4.8.3",
+    "vite": "^7.3.1"
+  }
+}

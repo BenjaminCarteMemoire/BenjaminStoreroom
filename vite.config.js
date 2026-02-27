@@ -1,0 +1,19 @@
+import { defineConfig } from 'vite';
+import path from 'path';
+
+export default defineConfig({
+    build: {
+        manifest: true,
+        outDir: 'web/dist',
+        rollupOptions: {
+            input: {
+                'theme-main': path.resolve(__dirname, 'storeroom-theme/src/main.js'),
+            },
+        },
+    },
+    server: {
+        cors: true,
+        strictPort: true,
+        port: 3000,
+    },
+});

@@ -28,3 +28,6 @@ wp-cli.local.yml
 
 # IDE
 .idea
+
+# NPM
+node_modules

@@ -1,0 +1,60 @@
+{% extends 'layout/base.twig' %}
+
+{% block sidebar_title %}
+    {{ __( 'Page information', 'storeroom' ) }}
+{% endblock %}
+
+{% block sidebar_content %}
+    <ul class="sidebar_list">
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Posted by: ', 'storeroom') }}</span>
+            <a class="sidebar_author" href="{{ post.author.profile_url }}">{{ post.author.name }}</a>
+        </li>
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Date: ', 'storeroom' ) }}</span>
+            {{ post.date }}
+        </li>
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Categories: ', 'storeroom' ) }}</span>
+            <ul>
+                {% for term in post.terms({ taxonomy: 'category' }) %}
+                    <li>
+                        <a class="sidebar_author" href="{{ term.link }}">{{ term.title }}</a>
+                    </li>
+                {% else %}
+                    <li>
+                        {{ __( "None", 'storeroom') }}
+                    </li>
+                {% endfor %}
+            </ul>
+        </li>
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Tags: ', 'storeroom' ) }}</span>
+            <ul>
+                {% for term in post.terms({ taxonomy: 'tags' }) %}
+                    <li>
+                        <a class="sidebar_author" href="{{ term.link }}">{{ term.title }}</a>
+                    </li>
+                 {% else %}
+                     <li>
+                         {{ __( "None", 'storeroom') }}
+                     </li>
+                {% endfor %}
+            </ul>
+        </li>
+        {% if post.thumbnail %}
+            <li>
+                <span class="sidebar_list_li_title">{{ __( 'Image: ', 'storeroom' ) }}</span>
+                <a href="{{ post.thumbnail.src }}" target="_blank">
+                    <img class="sidebar_image" src="{{ post.thumbnail.src }}" alt="{{ post.thumbnail.alt }}">
+                </a>
+            </li>
+        {% endif %}
+    </ul>
+{% endblock %}
+
+ {% block page_title post.title %}
+
+ {% block page_content %}
+     {{ post.content }}
+ {% endblock %}

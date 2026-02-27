@@ -1,0 +1,28 @@
+{% extends 'layout/base.twig' %}
+
+{% block sidebar_title %}
+    {{ __( 'Page information', 'storeroom' ) }}
+{% endblock %}
+
+{% block sidebar_content %}
+    <ul class="sidebar_list">
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Posted by: ', 'storeroom') }}</span>
+            <a class="sidebar_author" href="{{ post.author.profile_url }}">{{ post.author.name }}</a>
+        </li>
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Date: ', 'storeroom' ) }}</span>
+            {{ post.date }}
+        </li>
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Table of contents: ', 'storeroom' ) }}</span>
+            <ul id="toc-list"></ul>
+        </li>
+    </ul>
+{% endblock %}
+
+ {% block page_title post.title %}
+
+ {% block page_content %}
+    {{ post.content }}
+ {% endblock %}

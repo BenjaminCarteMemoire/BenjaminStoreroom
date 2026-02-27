@@ -1,0 +1,5 @@
+<nav>
+    {% for item in menu.items %}
+        <a href="{{ item.link }}" class=" {{ item.current ? 'active' }}">{{ item.title }}</a>
+    {% endfor %}
+</nav>

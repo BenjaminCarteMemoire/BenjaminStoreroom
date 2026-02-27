@@ -1,0 +1,10 @@
+{
+  "name": "benjamincm/storeroom-theme",
+  "type": "wordpress-theme",
+  "description": "Theme used on https://benjamincm.org website.",
+  "autoload": {
+    "psr-4": {
+      "App\\Theme\\": "src/"
+    }
+  }
+}

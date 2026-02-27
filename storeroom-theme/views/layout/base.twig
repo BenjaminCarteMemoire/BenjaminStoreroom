@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html {{ site.language_attributes }}>
+<head>
+    <meta charset="{{ site.charset }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    {{ function('wp_head') }}
+
+</head>
+<body class="{{ body_class }}">
+<div id="page-wrapper">
+    {% include 'partials/header.twig' %}
+    <div id="swup" class="content-area transition-fade">
+        <aside>
+            <h3 style="margin-top:0;">{% block sidebar_title %}{% endblock %}</h3>
+            {% block sidebar_content %}
+            {% endblock %}
+        </aside>
+        <main>
+            <h2>&gt; {% block page_title %}{% endblock %}</h2>
+            <div id="content">
+                {% block page_content %}
+                {% endblock %}
+            </div>
+        </main>
+    </div>
+    <footer>
+        <p>Visiteur n° <span class="hit-counter" id="counter">004291</span></p>
+        <p>Site réalisé avec passion et un éditeur de texte brut.</p>
+    </footer>
+</div>
+{{ function('wp_footer') }}
+</body>
+</html>
