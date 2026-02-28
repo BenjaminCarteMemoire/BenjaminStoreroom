@@ -42,7 +42,12 @@ class ThemeSetup
 
     public function _enqueueAssets(): void
     {
-        $themePath = trailingslashit(get_stylesheet_directory());
+        $dev = defined('WP_ENV') && WP_ENV === 'development';
+        if ($dev) {
+            $themePath = trailingslashit(get_stylesheet_directory());
+        } else {
+            $themePath = 'storeroom-theme/';
+        }
 
         AssetsFactory::enqueue($themePath.'src/main.js');
     }
