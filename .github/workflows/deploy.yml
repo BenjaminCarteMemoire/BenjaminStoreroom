@@ -8,10 +8,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: 📥Code
+      - name: Code
         uses: actions/checkout@v4
 
-      - name: 🏗Vite CSS/JS
+      - name: Vite CSS/JS
         run: |
           npm install
           npm run build
@@ -55,7 +55,7 @@ jobs:
         uses: easingthemes/ssh-deploy@main
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          ARGS: "-rlgoDzvc -i --delete-after"
+          ARGS: "-rlgoDzvc -i --delete-after --filter='P .env' --filter='P /web/app/uploads/'"
           SOURCE: "./"
           REMOTE_HOST: ${{ secrets.SSH_HOST }}
           REMOTE_USER: ${{ secrets.SSH_USER }}
