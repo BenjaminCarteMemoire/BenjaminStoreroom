@@ -6,6 +6,9 @@ web/app/upgrade
 web/app/uploads/*
 !web/app/uploads/.gitkeep
 web/app/cache/*
+web/dist
+web/dist/*
+web/app/uploads
 
 # WordPress
 web/wp
