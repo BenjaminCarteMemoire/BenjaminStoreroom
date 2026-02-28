@@ -47,7 +47,25 @@ jobs:
     
           echo "Attempt to whitelist IP..."
           curl -sX POST -d 'whitelist[address]=${{ steps.ip.outputs.ipv4 }}' -d 'whitelist[port]=22' "https://${{ secrets.SSH_USER }}:${{ secrets.URL_ENCODED_PASSWORD }}@${{ secrets.SSH_HOST }}:2083/$ENDPOINT?r=add" | jq
-          
+
+      - name: 'Deploy on master branch'
+        if: ${{ github.ref == 'refs/heads/master' }}
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: "-rlgoDzvc -i --delete-after"
+          SOURCE: "./"
+          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+          REMOTE_USER: ${{ secrets.REMOTE_USER }}
+          TARGET: ${{ secrets.REMOTE_PATH }}
+          EXCLUDE: "./.git*, ./.env, /node_modules/, ./web/app/uploads/"
+          SCRIPT_BEFORE: |
+            whoami
+            ls -al
+          SCRIPT_AFTER: |
+            whoami
+            ls -al
+            echo $RSYNC_STDOUT
 
       - name: 🚀 Deploy
         uses: Burnett01/rsync-deployments@7.0.1
