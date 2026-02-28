@@ -20,17 +20,34 @@ jobs:
         run: |
           composer install --no-dev --optimize-autoloader
 
-      - name: Github IP
+      # Récupérer l'IP publique du runner GitHub
+      - name: Get runner's public IP
         id: ip
-        run: echo "ipv4=$(curl -s https://ifconfig.me)" >> $GITHUB_OUTPUT
+        uses: haythem/public-ip@v1.3
 
-      - name: Open Firewall
+      # Ajouter l'IP du runner à la whitelist SSH de o2Switch
+      - name: Whitelist IP on hosting & delete github old ones (o2switch)
+        shell: bash
         run: |
-          curl -X POST "https://api.o2switch.fr/v1/firewall/ip/allow" \
-          -H "Authorization: Bearer ${{ secrets.O2_API_TOKEN }}" \
-          -d "ip=${{ steps.ip.outputs.ipv4 }}"
-          echo "Attente de l'ouverture du pare-feu..."
-          sleep 15
+          ENDPOINT='frontend/o2switch/o2switch-ssh-whitelist/index.live.php'
+    
+          echo "Get actual whitelisted IPs..."
+          RESPONSE=$(curl -sX GET "https://${{ secrets.SSH_USER }}:${{ secrets.URL_ENCODED_PASSWORD }}@${{ secrets.SSH_HOST }}:2083/$ENDPOINT?r=list")
+          echo "Response: $RESPONSE"
+          UNIQUE_IPS=$(echo "$RESPONSE" | jq -r '.data.list[] | .address' | sort -u)
+    
+          for address in $UNIQUE_IPS; do
+            echo "Delete this github IP: $address (in & out)"
+            curl -sX GET "https://${{ secrets.SSH_USER }}:${{ secrets.URL_ENCODED_PASSWORD }}@${{ secrets.SSH_HOST }}:2083/$ENDPOINT?r=remove&address=$address&direction=in&port=22" | jq
+            sleep 3
+            curl -sX GET "https://${{ secrets.SSH_USER }}:${{ secrets.URL_ENCODED_PASSWORD }}@${{ secrets.SSH_HOST }}:2083/$ENDPOINT?r=remove&address=$address&direction=out&port=22" | jq
+            sleep 3
+          done
+          echo "All non-whitelisted IPs deleted!"
+    
+          echo "Attempt to whitelist IP..."
+          curl -sX POST -d 'whitelist[address]=${{ steps.ip.outputs.ipv4 }}' -d 'whitelist[port]=22' "https://${{ secrets.SSH_USER }}:${{ secrets.URL_ENCODED_PASSWORD }}@${{ secrets.SSH_HOST }}:2083/$ENDPOINT?r=add" | jq
+          
 
       - name: 🚀 Deploy
         uses: Burnett01/rsync-deployments@7.0.1
