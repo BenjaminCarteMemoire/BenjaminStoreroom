@@ -20,6 +20,18 @@ jobs:
         run: |
           composer install --no-dev --optimize-autoloader
 
+      - name: Github IP
+        id: ip
+        run: echo "ipv4=$(curl -s https://ifconfig.me)" >> $GITHUB_OUTPUT
+
+      - name: Open Firewall
+        run: |
+          curl -X POST "https://api.o2switch.fr/v1/firewall/ip/allow" \
+          -H "Authorization: Bearer ${{ secrets.O2_API_TOKEN }}" \
+          -d "ip=${{ steps.ip.outputs.ipv4 }}"
+          echo "Attente de l'ouverture du pare-feu..."
+          sleep 15
+
       - name: 🚀 Deploy
         uses: Burnett01/rsync-deployments@7.0.1
         with:
@@ -30,7 +42,7 @@ jobs:
             --exclude='node_modules' 
             --exclude='/web/app/uploads' 
             --exclude='/web/app/cache'
-            -e 'ssh -p 5022'
+            -e 'ssh -p 22 -o StrictHostKeyChecking=no'
           path: .
           remote_host: ${{ secrets.SSH_HOST }}
           remote_user: ${{ secrets.SSH_USER }}
