@@ -30,6 +30,7 @@ jobs:
             --exclude='node_modules' 
             --exclude='/web/app/uploads' 
             --exclude='/web/app/cache'
+            -e 'ssh -p 5022'
           path: .
           remote_host: ${{ secrets.SSH_HOST }}
           remote_user: ${{ secrets.SSH_USER }}
