@@ -50,6 +50,10 @@
                 </a>
             </li>
         {% endif %}
+        <li>
+            <span class="sidebar_list_li_title">{{ __( 'Table of contents: ', 'storeroom' ) }}</span>
+            <ul id="toc-list"></ul>
+        </li>
     </ul>
 {% endblock %}
 
@@ -57,4 +61,5 @@
 
  {% block page_content %}
      {{ post.content }}
+     {% include "partials/comments.twig" %}
  {% endblock %}

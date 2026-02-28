@@ -1,0 +1,38 @@
+{% if fn( 'comments_open' ) %}
+    <section class="comments-area">
+        {% include "partials/divider.twig" %}
+        <h4>[{{ __( 'Comments', 'storeroom') }}]</h4>
+
+        <div class="comments-list">
+            {% for comment in comments %}
+                <article class="comment-item" id="comment-{{ comment.id }}">
+                    <div class="comment-header">
+                        <span class="comment-author">{{ __( 'By: ', 'storeroom') }}: {{ comment.author.name|upper }}</span>
+                        <span class="comment-date">{{ __('Date: ', 'storeroom') }}: {{ comment.date('d-m-Y @ H:i') }}</span>
+                    </div>
+                    <div class="comment-content">
+                        {{ comment.content }}
+                    </div>
+                    <div class="comment-footer">
+                        <a href="#comment-{{ comment.id }}">#{{ comment.id }}</a>
+                    </div>
+                </article>
+            {% else %}
+                <p>{{ __( 'No comments', 'storeroom' ) }}</p>
+            {% endfor %}
+        </div>
+
+        <div class="comment-form-container">
+            {% include "partials/divider.twig" %}
+            <h4>{{ __( 'Add a comment: ', 'storeroom') }}</h4>
+
+            <div class="retro-form">
+                {{ function('comment_form', {
+                    'title_reply': '',
+                    'label_submit': 'Send',
+                    'class_submit': 'retro-button'
+                }) }}
+            </div>
+        </div>
+    </section>
+{% endif %}

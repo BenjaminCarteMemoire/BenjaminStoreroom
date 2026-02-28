@@ -1,0 +1,53 @@
+{% extends 'layout/base.twig' %}
+
+{% block sidebar_title %}
+    {{ __( 'Categories/Pages', 'storeroom' ) }}
+{% endblock %}
+
+{% block sidebar_content %}
+    {% include "partials/category-list.twig" %}
+    {% include "partials/page-list.twig" %}
+{% endblock %}
+
+ {% block page_title %}
+     {{ fn( 'get_the_archive_title') }}
+{% endblock %}
+
+ {% block page_content %}
+
+     <div class="file-listing">
+         <div class="file-row header">
+             <span class="file-name">{{ __( "Name", 'storeroom') }}</span>
+             <span class="file-date">{{ __( "Date", 'storeroom') }}</span>
+         </div>
+
+         {% for post in posts %}
+             <div class="file-row">
+                <span class="file-name">
+                    <a href="{{ post.link }}">
+                      {{ post.title }}
+                    </a>
+                </span>
+                 <span class="file-date">{{ post.date('d-m-Y') }}</span>
+             </div>
+         {% endfor %}
+     </div>
+
+     <div class="retro-pagination">
+         {% if posts.pagination.prev is not empty %}
+             <a href="{{ pagination.prev.link }}" class="prev">< {{ __( 'Prev', 'storeroom') }}</a>
+         {% endif %}
+
+         {% for page in posts.pagination.pages %}
+             {% if page.current %}
+                 <span class="current">[{{ page.title }}]</span>
+             {% else %}
+                 <a href="{{ page.link }}">{{ page.title }}</a>
+             {% endif %}
+         {% endfor %}
+
+         {% if posts.pagination.next %}
+             <a href="{{ pagination.next.link }}" class="next">{{ __( 'Next', 'storeroom') }} ></a>
+         {% endif %}
+     </div>
+ {% endblock %}

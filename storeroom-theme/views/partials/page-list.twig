@@ -1,0 +1,7 @@
+<ul>
+    {% for page in pages_list %}
+        <li style="margin: 8px 0;">
+            <a href="{{ page.link }}" class="sidebar_author">{{ page.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

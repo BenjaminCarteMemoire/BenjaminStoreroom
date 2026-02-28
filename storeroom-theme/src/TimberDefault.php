@@ -10,6 +10,15 @@ class TimberDefault
     {
 
         $context['menu'] = Timber::get_menu('primary');
+        $context['categories_list'] = Timber::get_terms([
+            'taxonomy' => 'category',
+            'count' => true,
+            'hide_empty' => false,
+        ]);
+        $context['pages_list'] = Timber::get_posts([
+            'post_type' => 'page',
+        ]);
+
         return $context;
     }
 }

@@ -16,7 +16,8 @@
             {% endblock %}
         </aside>
         <main>
-            <h2>&gt; {% block page_title %}{% endblock %}</h2>
+            {{ fn( 'theme_breadcrumb' ) }}
+            <h2 class="main-title">&gt; {% block page_title %}{% endblock %}</h2>
             <div id="content">
                 {% block page_content %}
                 {% endblock %}

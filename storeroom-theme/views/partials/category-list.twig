@@ -1,0 +1,7 @@
+<ul>
+    {% for category in categories_list %}
+        <li style="margin: 8px 0;">
+            <a href="{{ category.link }}" class="sidebar_author">{{ category.title }}</a>
+        </li>
+    {% endfor %}
+</ul>

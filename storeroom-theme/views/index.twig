@@ -1,6 +1,15 @@
- {% extends 'layout/base.twig' %}
+{% extends 'layout/base.twig' %}
 
- {% block page_title site.title %}
- {% block page_content %}
-     Menus, descriptions, blabla
- {% endblock %}
+{% block sidebar_title %}
+ {{ __( 'Categories/Pages', 'storeroom' ) }}
+{% endblock %}
+
+{% block sidebar_content %}
+ {% include "partials/category-list.twig" %}
+ {% include "partials/page-list.twig" %}
+{% endblock %}
+
+{% block page_title site.title %}
+{% block page_content %}
+ Menus, descriptions, blabla
+{% endblock %}

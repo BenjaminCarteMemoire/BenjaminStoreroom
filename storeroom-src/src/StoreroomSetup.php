@@ -2,6 +2,11 @@
 
 namespace App\Core;
 
+use App\Core\Controllers\ACFFieldsController;
+use App\Core\Controllers\FileController;
+use App\Core\Controllers\PostTypeController;
+use App\Core\Controllers\TaxonomyController;
+use App\Core\Entity\File;
 use App\Core\Timber\User;
 use App\Core\Tools\AssetsFactory;
 
@@ -18,6 +23,10 @@ class StoreroomSetup
 
     public function __construct()
     {
+        new PostTypeController;
+        new TaxonomyController;
+        new ACFFieldsController;
+        new FileController;
 
         AssetsFactory::addModuleCompatibility();
 
@@ -27,8 +36,26 @@ class StoreroomSetup
     protected function changeTimberBehavior()
     {
 
+        // Change user class.
         \add_filter('timber/user/class', function ($class) {
             return User::class;
         }, 10, 1);
+
+        // Add files to Classmap.
+        \add_filter('timber/post/classmap', function ($classmap) {
+            return array_merge($classmap, [
+                'files' => File::class,
+            ]);
+        });
+
+        // Add file fetch function.
+        \add_filter('timber/twig/functions', function ($functions) {
+
+            $functions['fetch_files'] = [
+                'callable' => [File::class, 'getFilesWithFileSection'],
+            ];
+
+            return $functions;
+        });
     }
 }
