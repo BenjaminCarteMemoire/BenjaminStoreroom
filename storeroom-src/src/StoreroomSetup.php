@@ -28,7 +28,7 @@ class StoreroomSetup
         if ($dev) {
             return trailingslashit(plugin_dir_path(__FILE__).'../assets/');
         } else {
-            return 'storeroom-src/';
+            return 'storeroom-src/assets/';
         }
     }
 
