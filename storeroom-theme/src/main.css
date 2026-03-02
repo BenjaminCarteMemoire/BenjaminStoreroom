@@ -24,7 +24,7 @@ body {
     border: 3px double var(--text-color);
     padding: 15px;
     box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-    min-height: 85vh;
+    height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -124,6 +124,7 @@ main {
     background: #ffffff;
     padding: 20px;
     overflow-y: auto;
+    min-height: 0;
 }
 
 main img {
@@ -132,6 +133,13 @@ main img {
     display: block;
     margin: 10px auto;
     border: 1px solid var(--text-color);
+}
+
+main video,
+main iframe {
+    max-width: 100%;
+    height: auto;
+    display: block;
 }
 
 main img.latex-formula {

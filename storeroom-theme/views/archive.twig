@@ -50,4 +50,9 @@
              <a href="{{ pagination.next.link }}" class="next">{{ __( 'Next', 'storeroom') }} ></a>
          {% endif %}
      </div>
+
+     <div class="archive-description">
+        {{ fn( 'get_the_archive_description') }}
+     </div>
+
  {% endblock %}
