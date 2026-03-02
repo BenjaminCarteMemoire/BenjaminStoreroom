@@ -5,6 +5,7 @@ namespace App\Core;
 use App\Core\Controllers\ACFFieldsController;
 use App\Core\Controllers\ContactController;
 use App\Core\Controllers\FileController;
+use App\Core\Controllers\LaTeXController;
 use App\Core\Controllers\PostTypeController;
 use App\Core\Controllers\TaxonomyController;
 use App\Core\Entity\File;
@@ -39,6 +40,7 @@ class StoreroomSetup
         new ACFFieldsController;
         new FileController;
         new ContactController;
+        new LaTeXController;
 
         AssetsFactory::addModuleCompatibility();
 
