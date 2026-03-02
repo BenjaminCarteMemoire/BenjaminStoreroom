@@ -1,0 +1,21 @@
+{% extends 'page.twig' %}
+
+ {% block page_content %}
+     {% if sent == "success" %}
+         <p>{{ __("Your email has been sent successfully. You should receive a reply shortly.", 'storeroom') }}</p>
+     {% else %}
+         <div id="contact-form-fail" class="form-alert failed" style="display:none;"></div>
+
+        <form id="contact-form" class="form" method="post" action="{{ fn('admin_url', 'admin-ajax.php') }}">
+            <label for="name">{{ __( "Name: ", 'storeroom') }}</label>
+            <input name="name" id="name" type="text" required>
+            <label for="email">{{ __( "Email: ", 'storeroom') }}</label>
+            <input name="email" id="email" type="email" required>
+            <label for="message">{{ __( "Message: ", 'storeroom') }}</label>
+            <textarea name="message" id="message" cols="40" rows="10" style="resize:none;" required></textarea>
+
+            <input type="hidden" name="_wpnonce" value="{{ _wpnonce }}">
+            <button type="submit" class="retro-button">{{ __( "Send", 'storeroom' ) }}</button>
+        </form>
+     {% endif %}
+ {% endblock %}

@@ -50,6 +50,13 @@ class AssetsFactory
         }
     }
 
+    public static function hookAndEnqueue(string $file_name)
+    {
+        \add_action('wp_enqueue_scripts', function () use ($file_name) {
+            self::enqueue($file_name);
+        });
+    }
+
     public static function addModuleCompatibility(): void
     {
 

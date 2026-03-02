@@ -24,7 +24,7 @@ body {
     border: 3px double var(--text-color);
     padding: 15px;
     box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
-    height: 85vh;
+    min-height: 85vh;
     display: flex;
     flex-direction: column;
 }
@@ -37,11 +37,17 @@ header {
 }
 
 .logo {
-    font-size: 10px;
+    font-size: clamp(6px, 1.2vh, 10px);
     line-height: 1;
     display: block;
     white-space: pre;
     margin: 10px 0;
+}
+
+@media (max-width: 555px) {
+    .logo {
+        display: none;
+    }
 }
 
 .logo-subtitle {
@@ -135,6 +141,7 @@ main img.latex-formula {
 }
 
 .divider {
+    font-size: clamp(6px, 1.2vh, 10px);
     text-align: center;
     margin: 20px 0;
     letter-spacing: 5px;
@@ -304,4 +311,46 @@ html.is-animating .transition-fade {
 
 .retro-button:active {
     border-color: var(--border-dark) var(--border-light) var(--border-light) var(--border-dark);
+}
+
+.form {
+    padding: 20px;
+    font-family: var(--main-font);
+}
+
+.form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+.form input[type="text"],
+.form input[type="email"],
+.form textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    font-family: var(--main-font);
+    background: var(--bg-color);
+    border: 2px solid;
+    border-color: var(--border-dark);
+    box-sizing: border-box;
+}
+
+.form-alert {
+    padding: 10px;
+    border: 2px solid var(--border-dark);
+    font-family: var(--main-font);
+    margin-bottom: 15px;
+}
+
+.form-alert.success {
+    background: #00ba37;
+    color: #fff;
+}
+
+.form-alert.failed {
+    background: #bf2323;
+    color: #fff;
 }

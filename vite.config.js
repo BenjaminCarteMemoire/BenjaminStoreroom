@@ -8,6 +8,7 @@ export default defineConfig({
         rollupOptions: {
             input: {
                 'theme-main': path.resolve(__dirname, 'storeroom-theme/src/main.js'),
+                'contact-main': path.resolve( __dirname, 'storeroom-src/assets/contact.js')
             },
         },
     },

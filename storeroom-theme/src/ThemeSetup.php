@@ -16,6 +16,17 @@ class ThemeSetup
         return self::$instance;
     }
 
+    public static function getAssetsThemePath(): string
+    {
+        $dev = defined('WP_ENV') && WP_ENV === 'development';
+        if ($dev) {
+            return trailingslashit(get_stylesheet_directory());
+        } else {
+            return 'storeroom-theme/';
+        }
+
+    }
+
     public function __construct()
     {
 
@@ -42,12 +53,7 @@ class ThemeSetup
 
     public function _enqueueAssets(): void
     {
-        $dev = defined('WP_ENV') && WP_ENV === 'development';
-        if ($dev) {
-            $themePath = trailingslashit(get_stylesheet_directory());
-        } else {
-            $themePath = 'storeroom-theme/';
-        }
+        $themePath = self::getAssetsThemePath();
 
         AssetsFactory::enqueue($themePath.'src/main.js');
     }

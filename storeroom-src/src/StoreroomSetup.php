@@ -3,6 +3,7 @@
 namespace App\Core;
 
 use App\Core\Controllers\ACFFieldsController;
+use App\Core\Controllers\ContactController;
 use App\Core\Controllers\FileController;
 use App\Core\Controllers\PostTypeController;
 use App\Core\Controllers\TaxonomyController;
@@ -21,12 +22,23 @@ class StoreroomSetup
         return self::$instance;
     }
 
+    public static function getAssetsCorePath(): string
+    {
+        $dev = defined('WP_ENV') && WP_ENV === 'development';
+        if ($dev) {
+            return trailingslashit(plugin_dir_path(__FILE__).'../assets/');
+        } else {
+            return 'storeroom-src/';
+        }
+    }
+
     public function __construct()
     {
         new PostTypeController;
         new TaxonomyController;
         new ACFFieldsController;
         new FileController;
+        new ContactController;
 
         AssetsFactory::addModuleCompatibility();
 
