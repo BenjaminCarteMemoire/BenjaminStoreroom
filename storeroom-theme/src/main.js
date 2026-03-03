@@ -15,9 +15,12 @@ const swup = new Swup({
 
 swup.hooks.on('content:replace', () => {
     generateTOC();
+    mobileCompatibility();
+
 });
 document.addEventListener('DOMContentLoaded', () => {
     generateTOC();
+    mobileCompatibility();
 })
 
 /*
@@ -25,7 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * MOBILE COMPATIBILITY
  * ===
  */
-document.addEventListener('DOMContentLoaded', () => {
+function mobileCompatibility(){
     let mobileAsideButton = document.getElementById('aside-button');
     let mobileAsideContainer = document.getElementById('aside-container');
     if (mobileAsideButton && mobileAsideContainer) {
@@ -33,4 +36,4 @@ document.addEventListener('DOMContentLoaded', () => {
             mobileAsideContainer.style.display = mobileAsideContainer.style.display === 'block' ? 'none' : 'block';
         })
     }
-})
+}
