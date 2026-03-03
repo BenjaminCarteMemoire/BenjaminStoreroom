@@ -23,10 +23,17 @@ body {
     max-width: 900px;
     border: 3px double var(--text-color);
     padding: 15px;
-    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
     height: 85vh;
+    box-shadow: 10px 10px 0px rgba(0,0,0,0.5);
     display: flex;
     flex-direction: column;
+}
+
+@media( min-width: 600px){
+    #page-wrapper {
+        height: auto;
+        min-height: 85vh;
+    }
 }
 
 header {
@@ -96,6 +103,24 @@ aside {
     border: 1px dashed var(--text-color);
     padding: 10px;
     font-size: 0.9em;
+}
+
+#aside-button {
+    display: none;
+    text-align: center;
+    color: var(--text-color);
+    text-decoration: underline;
+    margin-bottom: 5px;
+}
+
+@media( max-width: 600px){
+    #aside-container {
+        display: none;
+    }
+
+    #aside-button {
+        display: block;
+    }
 }
 
 .sidebar_list {

@@ -11,9 +11,12 @@
     {% include 'partials/header.twig' %}
     <div id="swup" class="content-area transition-fade">
         <aside>
-            <h3 style="margin-top:0;">{% block sidebar_title %}{% endblock %}</h3>
-            {% block sidebar_content %}
-            {% endblock %}
+            <a href="#aside-container" id="aside-button">{{ __( "Show/Hide Page informations", 'storeroom') }}</a>
+            <div id="aside-container">
+                <h3 style="margin-top:0;">{% block sidebar_title %}{% endblock %}</h3>
+                {% block sidebar_content %}
+                {% endblock %}
+            </div>
         </aside>
         <main>
             {{ fn( 'theme_breadcrumb' ) }}
