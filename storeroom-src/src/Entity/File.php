@@ -18,11 +18,11 @@ class File extends \Timber\Post
                     'terms' => $file_section,
                 ],
             ],
-            'status' => ['public', 'private'],
+            'status' => is_user_logged_in() ? ['publish', 'private'] : ['publish'],
             'fields' => 'ids',
         ]);
         $posts = array_map(fn ($id) => Timber::get_post($id), $query->posts);
+
         return $posts;
     }
-
 }

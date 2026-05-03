@@ -1,9 +1,5 @@
 <ul class="file-list">
     {% for file in fetch_files( file_section ) %}
-        {% if file.status == "publish" %}
-          <li><a href="{{ file.link }}" target="_blank">{{ file.title }}</a></li>
-        {% else %}
-            <li>{{ file.title }}</li>
-        {% endif %}
+        <li><a href="{{ file.link }}" target="_blank">{{ file.title }}</a></li>
     {% endfor %}
 </ul>

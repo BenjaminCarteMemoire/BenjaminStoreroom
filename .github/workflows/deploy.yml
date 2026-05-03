@@ -68,8 +68,6 @@ jobs:
           EXCLUDE: ".git*, .env, node_modules/, web/app/uploads/"
           SCRIPT_BEFORE: |
             whoami
-            ls -al
           SCRIPT_AFTER: |
             whoami
-            ls -al
             echo $RSYNC_STDOUT
